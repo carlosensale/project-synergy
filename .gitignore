@@ -42,3 +42,5 @@ build/
 ### remove when ready
 README.md
 Project_Synergy_Banner.png
+api/session/src/test
+api/database/src/test

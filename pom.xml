@@ -5,9 +5,12 @@
   <groupId>com.synergy</groupId>
   <artifactId>root</artifactId>
   <version>0.1.0</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>Project-Synergy</name>
+  <modules>
+    <module>api</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
