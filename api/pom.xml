@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.synergy</groupId>
         <artifactId>root</artifactId>
-        <version>0.1.0</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>api</artifactId>
