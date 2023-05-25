@@ -9,8 +9,9 @@
 
     <name>Project-Synergy</name>
     <modules>
-        <module>api</module>
         <module>library</module>
+        <module>database</module>
+        <module>session</module>
         <module>http-server</module>
     </modules>
 
