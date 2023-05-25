@@ -22,20 +22,24 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>4.1.90.Final</version>
+            <scope>compile</scope>
         </dependency>
         <!--session api-->
         <dependency>
             <groupId>com.synergy</groupId>
             <artifactId>session</artifactId>
             <version>1.0.0</version>
+            <scope>compile</scope>
         </dependency>
         <!--google gson, a json mapper-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
