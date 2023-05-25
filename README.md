@@ -69,6 +69,64 @@ Note: There will be a version without jitpack coming soon.
 ## Usage
 
 After adding the dependency to your project, you are ready to go. There are two mayor features of the project:
-the HTTP-Server and the HTTP-Services.
+the HTTP-Server and the HTTP-Services. In the following instructions 'Session' is a placeholder
+for your implementation of the Session interface.
 
-TO BE CONTINUED
+* Step 1:  
+  First you need to an instance of a java.util.logging.Logger.  
+  ```java
+    Logger logger = Logger.getLogger("Logger");
+  ```
+* Step 2:
+  To persist information about the sessions, a DataHandler is needed.
+  ```java
+    DataHandler<Session> sessionDatabase = ...;
+  ```
+* Step 3:
+  For handling the sessions, an implementation of a SessionHandler<?> will be needed.
+  You can use a DefaultSessionHandler for example.
+  ```java
+    SessionHandler<Session> sessionHandler = new DefaultSessionHandler<>(sessionDatabase,logger);
+  ```
+* Step 4:
+  Now an HTTP-Server can be declared and initialized with a fitting implementation e.g. NettyHttpServer.
+  ```java
+    HttpServer server = new NettyHttpServer<>(sessionHandler,logger);
+  ```
+* Step 5:
+  Now we need to create a Service that will be registered. In this example
+  we implmented this TestService. It shows difrent methods and path, as well as one method where a session
+  is needed and one without.
+  ```java
+  public class TestService implements HttpService {
+
+  @Override
+  public String getName() {
+    return "TestService";
+  }
+  
+  //will listen to localhost:11111/set
+  @HttpMethodHandler(path = "/set", method = "GET", session = false)
+  public FullHttpResponse set(RequestContext context){
+    return new HttpResponseBuilder().content("Success! cookie set!").addCookie("KEY=ABC").build();
+  }
+  //will listen to localhost:11111/test
+  @HttpMethodHandler(path = "/test", method = "GET")
+  public FullHttpResponse test(RequestContext context, Test2Session testSession){
+    return NettyHttpResponseUtils.simpleHttpText200("Success! session: "+testSession);
+  }
+  ```
+* Step 6:
+  After setting up everything, we can register our HTTP-Services.
+  ```java
+    server.registerService(new TestService());
+  ```
+* Step 7:
+  Last but not least we can start the HTTP-Server. In this example, the server will be
+  started at localhost:11111.
+  ```java
+  server.startHttpServer("localhost", 11111);
+  ```
+Now everything is ready. You can register as many services as you want. Just remember
+that you only can register one method to you path.
+
