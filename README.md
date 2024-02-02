@@ -41,7 +41,7 @@ You can simply add Project Synergy to your own work by adding a dependency in ma
     <dependency>
 	    <groupId>com.github.carlosensale</groupId>
 	    <artifactId>Project-Synergy</artifactId>
-	    <version>1.0.0</version>
+	    <version>v1.0.0</version>
     </dependency>
 ```
 - Finally, you can reload your maven project
